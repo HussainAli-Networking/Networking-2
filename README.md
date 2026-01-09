@@ -1,6 +1,6 @@
-# Networking 2 — Complete Study, Labs, and Teaching Material
+# Networking 2 — Study, Labs, and Teaching Material
 
-This repository contains my **Networking 2 course material**, structured for **teaching, learning, and real understanding**, not memorization.
+This repository contains my **Networking 2 course material**, structured for **teaching, learning, and real understanding**.
 
 It combines:
 - Concept explanations
@@ -9,34 +9,32 @@ It combines:
 - Troubleshooting scenarios
 - Structured revision material
 
-The approach is practical and engineering-focused:
+The methodology is practical and engineering-focused:
 
 **Understand → Build → Verify → Break → Fix → Revise**
-
-By the end, a learner can design, configure, verify, and troubleshoot a routed and switched network with services and edge connectivity.
 
 ---
 
 ## Project Objective
 
-This repository supports a **full Networking 2 curriculum**, delivered through:
+This repository supports a **Networking 2 curriculum** delivered through:
 - Concept-based YouTube videos
 - Configuration and demo videos
-- Packet Tracer labs for every topic
-- Troubleshooting-first thinking
+- Packet Tracer labs
+- Troubleshooting-driven learning
 - Exam-oriented revision material
 
 **Final outcome:**  
-A learner can think and operate like a junior network engineer, not just pass an exam.
+A learner can design, configure, verify, and troubleshoot a routed and switched network confidently.
 
 ---
 
 ## How Each Topic Is Handled
 
-Every topic in this repository follows the same rule:
+Every topic in this repository follows the same standard:
 
-- One concept explanation
-- One configuration / demo
+- Concept explanation
+- Configuration and demonstration
 - At least one Packet Tracer lab
 - Verification and troubleshooting steps
 - Clear learning outcomes
@@ -45,92 +43,78 @@ No topic is considered complete without a **working lab and verification**.
 
 ---
 
-## Course Structure (Module-Based)
+## Course Structure
 
 ### MODULE 1 — LAN & Switching Foundations
+
 **Focus:** Switch fundamentals and secure management
 
 Topics include:
-- LAN design basics
-- Switch hardware and IOS
-- Configuration files (running vs startup)
-- Management IP and secure access
+- LAN design principles
+- Switch hardware components
+- Cisco IOS basics
+- Configuration files (running-config vs startup-config)
+- Management IP configuration
+- Console and VTY security
 
-Outcome:
-You can secure, manage, save, restore, and verify switch configurations.
-
----
-
-### MODULE 2 — Inter-VLAN Routing
-**Focus:** Enabling communication between VLANs
-
-Topics include:
-- Router-on-a-Stick
-- Sub-interfaces
-- Encapsulation errors
-
-Outcome:
-You can route traffic between VLANs and troubleshoot inter-VLAN failures.
+**Outcome:**  
+You can securely configure, manage, save, restore, and verify switch configurations.
 
 ---
 
-### MODULE 3 — VLANs & Trunking
-**Focus:** Layer 2 segmentation and trunking logic
+### MODULE 2 — LAN Segmentation & Inter-VLAN Routing  
+*(VLANs, access vs trunk, inter-VLAN routing)*
+
+**Focus:** Layer 2 segmentation and Layer 3 connectivity
 
 Topics include:
-- VLAN purpose and benefits
-- Access vs trunk ports
+- VLAN concepts and benefits
+- Access ports vs trunk ports
 - 802.1Q trunking
-- VLAN troubleshooting
+- Inter-VLAN routing
+- Router-on-a-Stick
+- Common VLAN and trunking issues
 
-Outcome:
-You can segment a LAN, configure trunks, and fix VLAN communication issues.
+**Outcome:**  
+You can segment a LAN, enable inter-VLAN communication, and troubleshoot Layer 2 issues.
 
 ---
 
-### MODULE 4 — Spanning Tree Protocol (STP)
-**Focus:** Layer 2 loop prevention
+### MODULE 3 — Network Redundancy & High Availability  
+*(HSRP, EtherChannel)*
+
+**Focus:** Network resilience and redundancy
 
 Topics include:
-- Layer 2 loops
-- Broadcast storms
-- Root bridge election
-- STP manipulation
+- Gateway redundancy concepts
+- HSRP operation and roles
+- EtherChannel load balancing
+- Redundant link troubleshooting
 
-Outcome:
-You can explain, verify, and control STP behavior in redundant networks.
+**Outcome:**  
+You can build redundant networks and verify high availability behavior.
 
 ---
 
-### MODULE 5 — DHCP
-**Focus:** Automatic IP addressing
+### MODULE 4 — Wireless LAN Fundamentals
+
+**Focus:** Wireless networking basics
 
 Topics include:
-- DORA process
-- DHCP server vs relay
-- Helper-address issues
+- Wireless LAN concepts
+- SSIDs and security basics
+- AP operation and client association
+- Common WLAN issues
 
-Outcome:
-You can deploy DHCP across multiple subnets and diagnose failures.
-
----
-
-### MODULE 6 — NAT
-**Focus:** Private-to-public address translation
-
-Topics include:
-- Inside vs outside interfaces
-- Static NAT
-- Dynamic NAT
-- PAT (Overload)
-
-Outcome:
-You can configure, verify, and troubleshoot NAT in real scenarios.
+**Outcome:**  
+You can explain WLAN operation and verify basic wireless connectivity.
 
 ---
 
-### MODULE 7 — PPP & PPPoE
-**Focus:** WAN connectivity (IMPORTANT)
+### MODULE 5 — WAN Connectivity & PPP Technologies  
+*(PPP, PPPoE)*
+
+**Focus:** WAN links and ISP-style connectivity
 
 Topics include:
 - WAN concepts
@@ -138,14 +122,62 @@ Topics include:
 - PAP and CHAP authentication
 - PPPoE client/server operation
 
-Outcome:
-You can configure authenticated PPP links and understand ISP-style PPPoE access.
+**Outcome:**  
+You can configure authenticated WAN links and understand PPPoE deployment.
+
+---
+
+### MODULE 6 — Network Services & Address Translation  
+*(DHCP, NAT)*
+
+**Focus:** IP addressing and internet connectivity
+
+Topics include:
+- DHCP DORA process
+- DHCP server and relay
+- Static NAT
+- Dynamic NAT
+- PAT (overload)
+
+**Outcome:**  
+You can automate IP addressing, configure NAT, and troubleshoot address translation.
+
+---
+
+### MODULE 7 — Traffic Filtering & Access Control  
+*(ACLs)*
+
+**Focus:** Network traffic control and security
+
+Topics include:
+- Standard vs extended ACLs
+- ACL placement logic
+- Traffic filtering verification
+- Common ACL mistakes
+
+**Outcome:**  
+You can control traffic flow and secure networks using ACLs.
+
+---
+
+### FINAL MODULE — Full Revision & Integrated Troubleshooting
+
+**Focus:** End-to-end understanding and exam readiness
+
+This module revises **all Networking 2 topics** through:
+- Concept recap
+- Command review
+- Exam-style scenarios
+- Integrated troubleshooting labs
+
+**Outcome:**  
+You can connect all Networking 2 concepts together and troubleshoot complex networks systematically.
 
 ---
 
 ## Packet Tracer Lab Standards
 
-Every Packet Tracer lab includes:
+Each Packet Tracer lab includes:
 - Topology diagram
 - IP addressing table
 - Clear objectives
@@ -157,28 +189,16 @@ Labs are designed to teach **why things break**, not just how to configure them.
 
 ---
 
-## Revision & Exam Preparation
-
-This repository also includes:
-- Revision notes per module
-- Command recap sheets
-- Exam-style scenarios
-- Final full-network troubleshooting lab
-
-Designed for fast review before exams or interviews.
-
----
-
 ## Tools & Environment
 - **Packet Tracer** (primary student labs)
-- **EVE-NG** (advanced and extended labs)
+- **EVE-NG** (advanced labs and extensions)
 - **Cisco IOS CLI**
 - Verification-driven troubleshooting (`show`, `debug`, packet flow)
 
 ---
 
 ## Disclaimer
-This repository contains **my personal teaching material, labs, and revision notes** based on hands-on practice and understanding.
+This repository contains **my personal teaching material, labs, and revision notes** based on hands-on practice.
 
 It is **not official course material**.  
 Always follow your institution’s syllabus and assessment requirements.
@@ -193,4 +213,4 @@ Always follow your institution’s syllabus and assessment requirements.
 ## Contact & Links
 - **Email:** hussainali.networking@gmail.com  
 - **GitHub:** https://github.com/Hussain-Networking  
-- **YouTube:** https://www.youtube.com/@@Hussain.Networking
+- **YouTube:** https://www.youtube.com/@Hussain.Networking
