@@ -1,0 +1,174 @@
+RIP Explained — How It Works, Step by Step
+=============================================
+
+This document is written so that if a you read it from start to finish,
+they will clearly understand WHAT RIP is, HOW it works internally,
+and WHY it behaves the way it does in real networks.
+
+-------------------------------------------------
+1. What RIP Really Is
+-------------------------------------------------
+RIP (Routing Information Protocol) is a distance-vector routing protocol.
+
+At its core, RIP answers one basic question:
+“How many routers do I have to pass through to reach a network?”
+
+RIP does NOT try to be smart.
+It does NOT build a full network map.
+It relies entirely on information received from neighbors.
+
+-------------------------------------------------
+2. The Big Picture: How RIP Operates
+-------------------------------------------------
+RIP follows a simple loop:
+
+1. Learn routes from neighbors
+2. Count hops to each destination
+3. Choose the path with the fewest hops
+4. Periodically tell neighbors everything it knows
+
+This simplicity makes RIP easy to understand,
+but also limits how large a network can be.
+
+-------------------------------------------------
+3. Distance-Vector Logic (The Core Idea)
+-------------------------------------------------
+RIP routers trust their neighbors.
+
+Each router tells its neighbors:
+“I can reach this network in X hops.”
+
+Neighbors add one hop and repeat the process.
+
+There is no global view.
+There is no verification.
+This is why RIP is vulnerable to routing loops.
+
+-------------------------------------------------
+4. Hop Count Metric
+-------------------------------------------------
+RIP uses ONLY one metric:
+Hop count.
+
+Rules:
+- Each router = 1 hop
+- Maximum hop count = 15
+- 16 hops = unreachable
+
+This hard limit is why RIP cannot scale.
+
+RIP does not care about:
+- Bandwidth
+- Delay
+- Link quality
+
+A slow link and a fast link look the same to RIP.
+
+-------------------------------------------------
+5. Routing Updates (Why RIP Is Noisy)
+-------------------------------------------------
+RIP sends full routing table updates every 30 seconds.
+
+These updates:
+- Are sent even if nothing has changed
+- Consume bandwidth
+- Slow down convergence
+
+This behavior made sense decades ago.
+It does not scale in modern networks.
+
+-------------------------------------------------
+6. Loop Prevention Mechanisms
+-------------------------------------------------
+Because RIP is simple, it needs extra rules to avoid loops.
+
+Key mechanisms:
+
+Split Horizon:
+A router does not advertise a route back out the interface it learned it from.
+
+Route Poisoning:
+A failed route is advertised with a hop count of 16.
+
+Hold-Down Timers:
+Routers ignore bad news for a period to avoid instability.
+
+These reduce loops but do not eliminate them.
+
+-------------------------------------------------
+7. What Happens When a Link Fails
+-------------------------------------------------
+When a link goes down:
+- The route is marked unreachable (16 hops)
+- The information spreads slowly
+- Routers may temporarily believe bad information
+
+This is known as slow convergence
+and can cause routing loops during failures.
+
+-------------------------------------------------
+8. RIP Tables (How Information Is Stored)
+-------------------------------------------------
+RIP does NOT have multiple tables like OSPF or EIGRP.
+
+It maintains:
+- A routing table learned entirely from neighbors
+
+There is no topology table.
+There is no global database.
+
+-------------------------------------------------
+9. RIP Versions
+-------------------------------------------------
+RIPv1:
+- Classful
+- No subnet mask information
+- Obsolete
+
+RIPv2:
+- Classless
+- Supports CIDR and VLSM
+- Supports authentication
+- Uses multicast 224.0.0.9
+
+RIPv2 is the only version worth studying today.
+
+-------------------------------------------------
+10. RIP for IPv6
+-------------------------------------------------
+RIPng is used for IPv6.
+
+Conceptually:
+- Same hop-count logic
+- Same limitations
+- Different packet format
+
+-------------------------------------------------
+11. Where RIP Still Makes Sense
+-------------------------------------------------
+RIP is useful when:
+- The network is very small
+- Simplicity matters more than efficiency
+- Teaching routing fundamentals
+
+RIP is NOT suitable for:
+- Large networks
+- Fast convergence requirements
+- Modern enterprise environments
+
+-------------------------------------------------
+12. Final Mental Model (How to Think About RIP)
+-------------------------------------------------
+Think of RIP as:
+A protocol that blindly trusts its neighbors
+and counts routers along the way.
+
+If the network is tiny, it works.
+If the network grows, it breaks.
+
+Understanding RIP helps you appreciate
+why protocols like OSPF and EIGRP exist.
+
+-------------------------------------------------
+End of File
+-------------------------------------------------
