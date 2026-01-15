@@ -63,20 +63,28 @@ You can securely configure, manage, save, restore, and verify switch configurati
 ---
 
 ### MODULE 2 — LAN Segmentation & Inter-VLAN Routing  
-*(VLANs, access vs trunk, inter-VLAN routing)*
+# MODULE 2 — LAN Segmentation, VLAN Management & Inter-VLAN Routing
+*(VLANs, access vs trunk, 802.1Q, VTP, inter-VLAN routing)*
 
-**Focus:** Layer 2 segmentation and Layer 3 connectivity
+**Focus:** Layer 2 segmentation, VLAN management, and Layer 3 connectivity
 
-Topics include:
+## Topics Include
 - VLAN concepts and benefits
 - Access ports vs trunk ports
 - 802.1Q trunking
+- **VLAN Trunking Protocol (VTP)**
+  - Types and modes
+  - Best practices
 - Inter-VLAN routing
 - Router-on-a-Stick
-- Common VLAN and trunking issues
+- Common VLAN, trunking, and VTP issues
 
-**Outcome:**  
-You can segment a LAN, enable inter-VLAN communication, and troubleshoot Layer 2 issues.
+## Outcome
+You will be able to:
+- Segment a LAN
+- Manage VLANs efficiently across multiple switches using VTP
+- Enable inter-VLAN communication
+- Troubleshoot Layer 2 and VLAN-related issues
 
 ---
 
