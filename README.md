@@ -62,8 +62,7 @@ You can securely configure, manage, save, restore, and verify switch configurati
 
 ---
 
-### MODULE 2 — LAN Segmentation & Inter-VLAN Routing  
-# MODULE 2 — LAN Segmentation, VLAN Management & Inter-VLAN Routing
+### MODULE 2 — LAN Segmentation, VLAN Management & Inter-VLAN Routing
 *(VLANs, access vs trunk, 802.1Q, VTP, inter-VLAN routing)*
 
 **Focus:** Layer 2 segmentation, VLAN management, and Layer 3 connectivity
