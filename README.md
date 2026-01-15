@@ -62,32 +62,61 @@ You can securely configure, manage, save, restore, and verify switch configurati
 
 ---
 
-### MODULE 2 — LAN Segmentation, VLAN Management & Inter-VLAN Routing
-*(VLANs, access vs trunk, 802.1Q, VTP, inter-VLAN routing)*
+### MODULE 2 — VLAN Trunking Protocol (VTP) & Spanning Tree Protocol (STP)
+*(VTP for VLAN management, STP for loop prevention)*
 
-**Focus:** Layer 2 segmentation, VLAN management, and Layer 3 connectivity
+**Focus:** VLAN propagation across switches and Layer 2 loop prevention
 
 ## Topics Include
-- VLAN concepts and benefits
+
+### VTP
+- VLAN Trunking Protocol concepts
+- VTP modes: Server, Client, Transparent
+- VTP domain, version, and pruning
+- Best practices and common issues
+
+### STP
+- Layer 2 loops and their dangers
+- STP operation and port roles
+- Root bridge election and priority
+- Port states: Blocking, Listening, Learning, Forwarding, Disabled
+- STP enhancements:
+  - Rapid Spanning Tree Protocol (RSTP)
+  - Multiple Spanning Tree Protocol (MSTP)
+  - PortFast, BPDU Guard, Root Guard
+- Troubleshooting STP-related issues
+
+## Outcome
+You will be able to:
+- Manage VLANs efficiently across multiple switches using VTP
+- Prevent Layer 2 loops in redundant networks using STP
+- Configure, verify, and troubleshoot VTP and STP
+- Apply STP enhancements for faster convergence and safer networks
+
+---
+
+### MODULE 3 — LAN Segmentation & Inter-VLAN Routing 
+*(VLANs, access vs trunk, inter-VLAN routing)*
+
+**Focus:** Layer 2 segmentation and Layer 3 connectivity
+
+## Topics Include
+- VLAN concepts and benefits 
 - Access ports vs trunk ports
 - 802.1Q trunking
-- **VLAN Trunking Protocol (VTP)**
-  - Types and modes
-  - Best practices
 - Inter-VLAN routing
 - Router-on-a-Stick
-- Common VLAN, trunking, and VTP issues
+- Common VLAN and trunking issues
 
 ## Outcome
 You will be able to:
 - Segment a LAN
-- Manage VLANs efficiently across multiple switches using VTP
 - Enable inter-VLAN communication
-- Troubleshoot Layer 2 and VLAN-related issues
+- Troubleshoot Layer 2 issues
 
 ---
 
-### MODULE 3 — Network Redundancy & High Availability  
+### MODULE 4 — Network Redundancy & High Availability  
 *(HSRP, EtherChannel)*
 
 **Focus:** Network resilience and redundancy
@@ -103,7 +132,7 @@ You can build redundant networks and verify high availability behavior.
 
 ---
 
-### MODULE 4 — Wireless LAN Fundamentals
+### MODULE 5 — Wireless LAN Fundamentals
 
 **Focus:** Wireless networking basics
 
@@ -118,7 +147,7 @@ You can explain WLAN operation and verify basic wireless connectivity.
 
 ---
 
-### MODULE 5 — WAN Connectivity & PPP Technologies  
+### MODULE 6 — WAN Connectivity & PPP Technologies  
 *(PPP, PPPoE)*
 
 **Focus:** WAN links and ISP-style connectivity
@@ -134,7 +163,31 @@ You can configure authenticated WAN links and understand PPPoE deployment.
 
 ---
 
-### MODULE 6 — Network Services & Address Translation  
+### MODULE 7 — Mid-Course Revision & Integrated Labs
+*(Review VLANs, VTP, STP, and Inter-VLAN Routing)*
+
+**Focus:** Reinforce concepts, verify configurations, and troubleshoot before moving to advanced topics
+
+## Topics Include
+- Quick recap of VLAN concepts and benefits
+- Access vs trunk ports, 802.1Q encapsulation
+- Inter-VLAN routing (Router-on-a-Stick)
+- VTP modes, domains, and best practices
+- STP operation, root bridge selection, and port states
+- Verification commands (`show vlan`, `show vtp status`, `show spanning-tree`, etc.)
+- Troubleshooting common Layer 2 issues
+- Mini integrated labs combining VLANs, VTP, STP, and routing
+
+## Outcome
+You will be able to:
+- Recall and explain core Layer 2 concepts
+- Verify VLAN, VTP, and STP configurations
+- Troubleshoot common Layer 2 and VLAN issues
+- Apply learned concepts in integrated lab scenarios
+
+---
+
+### MODULE 8 — Network Services & Address Translation  
 *(DHCP, NAT)*
 
 **Focus:** IP addressing and internet connectivity
@@ -151,7 +204,7 @@ You can automate IP addressing, configure NAT, and troubleshoot address translat
 
 ---
 
-### MODULE 7 — Traffic Filtering & Access Control  
+### MODULE 9 — Traffic Filtering & Access Control  
 *(ACLs)*
 
 **Focus:** Network traffic control and security
@@ -167,7 +220,7 @@ You can control traffic flow and secure networks using ACLs.
 
 ---
 
-### FINAL MODULE — Full Revision & Integrated Troubleshooting
+### MODULE 10 — Full Revision & Integrated Troubleshooting
 
 **Focus:** End-to-end understanding and exam readiness
 
