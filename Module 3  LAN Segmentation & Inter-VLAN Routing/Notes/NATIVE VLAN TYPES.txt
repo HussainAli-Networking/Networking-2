@@ -1,0 +1,207 @@
+NATIVE VLAN — TYPES WITH PRACTICAL EXAMPLES
+
+---
+
+1. NATIVE VLAN ON A SWITCH TRUNK (LAYER 2)
+
+Purpose:
+Handle untagged frames on a trunk link between switches.
+
+Scenario:
+Two switches are connected using a trunk.
+VLANs 10, 20, and 99 exist.
+VLAN 99 is chosen as the native VLAN.
+
+Example:
+
+Switch A:
+
+```
+interface g0/1
+ switchport mode trunk
+ switchport trunk native vlan 99
+```
+
+Switch B:
+
+```
+interface g0/1
+ switchport mode trunk
+ switchport trunk native vlan 99
+```
+
+What happens:
+• VLAN 10 and 20 frames are tagged
+• VLAN 99 frames are untagged
+• Native VLAN must match on both ends
+
+Use this when:
+• Connecting switches
+• Connecting a switch to a router trunk
+• You need to control untagged traffic
+
+---
+
+2. NATIVE VLAN ON A ROUTER SUBINTERFACE (ROUTER-ON-A-STICK)
+
+Purpose:
+Allow a router to route untagged VLAN traffic from a trunk.
+
+Scenario:
+A router connects to a switch via trunk.
+VLAN 99 is native.
+VLAN 10 and 20 are tagged.
+
+Router example:
+
+```
+interface g0/0
+ no ip address
+
+interface g0/0.10
+ encapsulation dot1Q 10
+ ip address 192.168.10.1 255.255.255.0
+
+interface g0/0.20
+ encapsulation dot1Q 20
+ ip address 192.168.20.1 255.255.255.0
+
+interface g0/0.99
+ encapsulation dot1Q 99 native
+ ip address 192.168.99.1 255.255.255.0
+```
+
+Switch trunk:
+
+```
+interface g0/1
+ switchport mode trunk
+ switchport trunk native vlan 99
+```
+
+What happens:
+• Untagged frames go to VLAN 99 subinterface
+• Tagged frames go to VLAN 10 or 20 subinterfaces
+• Router routes between VLANs
+
+Use this when:
+• Using router-on-a-stick
+• Switch trunk uses a native VLAN
+• You must route the native VLAN
+
+---
+
+3. PHYSICAL INTERFACE WITH IP (NOT A NATIVE VLAN)
+
+Purpose:
+Simple Layer-3 routing with no VLAN tagging.
+
+Scenario:
+A router connects to a switch using one VLAN only.
+
+Router:
+
+```
+interface g0/0
+ ip address 192.168.1.1 255.255.255.0
+```
+
+Switch:
+
+```
+interface g0/1
+ switchport mode access
+ switchport access vlan 10
+```
+
+What happens:
+• No trunking
+• No VLAN tags
+• All traffic is untagged
+• This is NOT a native VLAN
+
+Use this when:
+• Only one VLAN exists
+• Point-to-point routed links
+• Simple or temporary setups
+
+---
+
+4. NATIVE VLAN ON A LAYER-3 SWITCH (SVI-BASED)
+
+Purpose:
+Handle untagged traffic on trunks while routing using SVIs.
+
+Scenario:
+Two L3 switches in a campus network.
+VLAN 99 is native and used for management.
+
+Trunk port:
+
+```
+interface g0/1
+ switchport mode trunk
+ switchport trunk native vlan 99
+```
+
+SVI:
+
+```
+interface vlan 99
+ ip address 192.168.99.1 255.255.255.0
+```
+
+What happens:
+• Untagged frames go into VLAN 99
+• SVI provides routing and gateway
+• Physical port has no IP
+
+Use this when:
+• Campus / enterprise design
+• Clean separation of L2 and L3
+• High-performance routing
+
+---
+
+5. WRONG CONFIGURATION (COMMON MISTAKE)
+
+Scenario:
+Trying to mix physical IP and subinterfaces.
+
+Example (INVALID):
+
+```
+interface g0/0
+ ip address 192.168.99.1 255.255.255.0
+
+interface g0/0.10
+ encapsulation dot1Q 10
+ ip address 192.168.10.1 255.255.255.0
+```
+
+Why this fails:
+• Physical interface cannot have an IP if subinterfaces exist
+• Router cannot decide where untagged traffic belongs
+
+---
+
+FINAL COMPARISON SUMMARY
+
+• Switch trunk native VLAN → handles untagged frames
+• Router native subinterface → routes untagged VLAN
+• Physical IP interface → no VLANs involved
+• L3 switch SVI → routing happens here, not on ports
+
+---
+
+FINAL RULE TO TEACH STUDENTS
+
+Native VLAN answers one question only:
+
+“Where do untagged frames go on this trunk?”
+
+Routing is a separate decision and happens on:
+• Router subinterfaces, or
+• Switch SVIs
+
+Once students separate those two ideas, the topic becomes mechanical instead of confusing.

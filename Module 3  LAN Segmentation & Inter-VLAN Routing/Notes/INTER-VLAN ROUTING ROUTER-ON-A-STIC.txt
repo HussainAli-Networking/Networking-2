@@ -1,0 +1,115 @@
+INTER-VLAN ROUTING: ROUTER-ON-A-STICK VS LAYER-3 SWITCH
+
+VLANs separate networks at Layer 2.
+Devices in different VLANs cannot communicate unless a Layer-3 device routes between them.
+
+There are two common methods used for inter-VLAN routing:
+Router-on-a-Stick and Layer-3 Switch routing.
+
+---
+
+ROUTER-ON-A-STICK (RoAS)
+
+Router-on-a-Stick uses a router to perform inter-VLAN routing.
+
+One physical router interface connects to the switch.
+That interface is configured as a trunk.
+Multiple VLANs are carried over the same trunk link.
+
+For each VLAN:
+A router subinterface is created.
+Each subinterface is assigned:
+
+* A VLAN ID (802.1Q tagging)
+* An IP address (default gateway for that VLAN)
+
+Traffic flow:
+A host in VLAN 10 sends traffic to VLAN 20.
+The frame goes to the switch.
+The switch forwards it over the trunk to the router.
+The router routes the packet between subinterfaces.
+The packet is sent back over the same trunk.
+The switch delivers it to VLAN 20.
+
+Characteristics:
+Routing happens on the router.
+All VLANs share one physical link.
+Routing is software-based.
+Suitable for small networks and labs.
+Limited scalability and performance.
+
+---
+
+LAYER-3 SWITCH (SVI-BASED ROUTING)
+
+A Layer-3 switch performs routing internally.
+
+No external router is required.
+Routing is done using SVIs (Switched Virtual Interfaces).
+An SVI is a virtual Layer-3 interface mapped to a VLAN.
+
+For each VLAN that needs inter-VLAN communication:
+An SVI must exist.
+The SVI is assigned an IP address.
+That IP address is the default gateway for the VLAN.
+
+Traffic flow:
+A host in VLAN 10 sends traffic to VLAN 20.
+The switch receives the frame.
+The switch performs routing internally using SVIs.
+The packet is forwarded directly to VLAN 20.
+Traffic never leaves the switch.
+
+Characteristics:
+Routing happens inside the switch.
+Routing is hardware-based (ASIC).
+Very high performance.
+Scales well in enterprise networks.
+
+---
+
+IMPORTANT RULE ABOUT SVIs
+
+On a Layer-3 switch:
+If a VLAN does not have an SVI, it cannot route to other VLANs.
+That VLAN will remain Layer-2 only.
+
+This rule applies only to Layer-3 switches.
+Router-on-a-Stick does not require SVIs because routing is done on the router.
+
+---
+
+DIRECT COMPARISON
+
+Router-on-a-Stick:
+Routing device: Router
+VLAN representation: Subinterfaces
+Connection: Trunk to router
+Routing speed: Software
+Scalability: Low
+
+Layer-3 Switch:
+Routing device: Switch itself
+VLAN representation: SVIs
+Connection: Internal switch fabric
+Routing speed: Hardware
+Scalability: High
+
+---
+
+MENTAL MODEL FOR STUDENTS
+
+Router-on-a-Stick:
+VLAN → Router subinterface → Router → Router subinterface → VLAN
+
+Layer-3 Switch:
+VLAN → SVI → Switch routing engine → SVI → VLAN
+
+---
+
+SUMMARY
+
+Both methods allow VLAN-to-VLAN communication.
+Router-on-a-Stick relies on a router and trunking.
+Layer-3 switches rely on SVIs and internal routing.
+On a Layer-3 switch, SVIs are mandatory for inter-VLAN routing.

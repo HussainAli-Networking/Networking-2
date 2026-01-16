@@ -1,0 +1,25 @@
+VTP MODES
+
+1. Server
+
+- Can create, modify, and delete VLANs.
+
+- Sends VLAN updates to other switches.
+
+- Default mode on Cisco switches.
+
+2. Client
+
+- Cannot create or delete VLANs.
+
+- Receives updates from VTP servers.
+
+- VLAN database is read-only.
+
+3. Transparent
+
+- Does not participate in VTP updates.
+
+- Passes VTP messages through to other switches.
+
+- VLANs must be configured manually on this switch.
