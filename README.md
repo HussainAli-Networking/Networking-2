@@ -120,22 +120,7 @@ You can build redundant networks and verify high availability behavior.
 
 ---
 
-### MODULE 5 — Wireless LAN Fundamentals
-
-**Focus:** Wireless networking basics
-
-Topics include:
-- Wireless LAN concepts
-- SSIDs and security basics
-- AP operation and client association
-- Common WLAN issues
-
-**Outcome:**  
-You can explain WLAN operation and verify basic wireless connectivity.
-
----
-
-### MODULE 6 — WAN Connectivity & PPP Technologies  
+### MODULE 5 — WAN Connectivity & PPP Technologies  
 *(PPP, PPPoE)*
 
 **Focus:** WAN links and ISP-style connectivity
@@ -151,7 +136,7 @@ You can configure authenticated WAN links and understand PPPoE deployment.
 
 ---
 
-### MODULE 7 — Mid-Course Revision & Integrated Labs
+### MODULE 6 — Mid-Course Revision & Integrated Labs
 *(Review VLANs, VTP, STP, and Inter-VLAN Routing)*
 
 **Focus:** Reinforce concepts, verify configurations, and troubleshoot before moving to advanced topics
@@ -175,7 +160,7 @@ You will be able to:
 
 ---
 
-### MODULE 8 — Network Services & Address Translation  
+### MODULE 7 — Network Services & Address Translation  
 *(DHCP, NAT)*
 
 **Focus:** IP addressing and internet connectivity
@@ -192,7 +177,7 @@ You can automate IP addressing, configure NAT, and troubleshoot address translat
 
 ---
 
-### MODULE 9 — Traffic Filtering & Access Control  
+### MODULE 8 — Traffic Filtering & Access Control  
 *(ACLs)*
 
 **Focus:** Network traffic control and security
@@ -208,7 +193,7 @@ You can control traffic flow and secure networks using ACLs.
 
 ---
 
-### MODULE 10 — Full Revision & Integrated Troubleshooting
+### MODULE 9 — Full Revision & Integrated Troubleshooting
 
 **Focus:** End-to-end understanding and exam readiness
 
