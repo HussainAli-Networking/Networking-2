@@ -1,0 +1,145 @@
+EtherChannel and Load Balancing Explanation  
+
+EtherChannel is a Layer 2 or Layer 3 technology that bundles multiple physical interfaces into one logical interface called a port-channel. To STP and routing protocols, this logical interface looks like a single link.
+
+The main goals of EtherChannel are:
+
+* Increase total available bandwidth
+* Provide link redundancy
+* Prevent STP from blocking usable links
+* Improve convergence when a link fails
+
+If one physical link in the bundle goes down, traffic continues over the remaining links with no major reconvergence.
+
+---
+
+Why EtherChannel Is Needed
+
+In a normal switched network, STP blocks redundant links to prevent loops. This protects the network but wastes bandwidth.
+
+EtherChannel solves this by grouping links so STP sees only one logical path. No blocking, no loops, full use of links.
+
+---
+
+EtherChannel Requirements (Must Match)
+
+All interfaces in an EtherChannel must have:
+
+* Same speed
+* Same duplex
+* Same access VLAN or trunk mode
+* Same native VLAN (if trunk)
+* Same allowed VLAN list (if trunk)
+
+If these do not match, the EtherChannel will fail or behave unpredictably.
+
+---
+
+EtherChannel Modes
+
+1. Static (on)
+   Forces interfaces to bundle without negotiation.
+   Fast but dangerous.
+   Can create loops if the other side is not configured correctly.
+   Use only in labs or controlled environments.
+
+2. PAgP (Cisco proprietary)
+
+* Desirable: actively negotiates
+* Auto: passive
+  Works only between Cisco devices.
+  Mostly legacy.
+
+3. LACP (IEEE standard)
+
+* Active: sends negotiation packets
+* Passive: listens only
+  Industry standard.
+  Recommended for production networks.
+
+---
+
+Layer 2 EtherChannel
+
+Used between switches.
+Interfaces remain switchports.
+Can be access or trunk ports.
+STP runs on the port-channel, not individual links.
+
+Common use:
+Access–Distribution
+Distribution–Core (Layer 2 design)
+
+---
+
+Layer 3 EtherChannel
+
+Used for routed links.
+Interfaces are converted to routed ports (no switchport).
+IP address is applied to the port-channel.
+STP is not involved.
+
+Common use:
+Distribution–Core routed designs
+
+---
+
+Load Balancing in EtherChannel
+
+EtherChannel does NOT split a single traffic flow across multiple links.
+
+Traffic is load-balanced using a hashing algorithm.
+Each flow is assigned to one physical link based on fields such as:
+
+* Source MAC
+* Destination MAC
+* Source IP
+* Destination IP
+* Layer 4 ports (platform dependent)
+
+Multiple flows are distributed across links.
+A single heavy flow uses only one link.
+
+This behavior is intentional to avoid packet reordering.
+
+---
+
+Common Load-Balancing Methods
+
+Examples include:
+
+* src-mac
+* dst-mac
+* src-dst-mac
+* src-ip
+* dst-ip
+* src-dst-ip
+
+General recommendation:
+src-dst-ip
+
+For data center traffic, include Layer 4 ports if supported.
+
+---
+
+Important Limitation
+
+EtherChannel increases aggregate bandwidth, not single-session bandwidth.
+
+If one link is 1 Gbps:
+
+* One flow max = 1 Gbps
+* Ten flows may use multiple links
+
+If you need faster single flows, you need faster links.
+
+---
+
+When to Use EtherChannel
+
+Use EtherChannel when:
+
+* You need redundancy
+* You want to use multiple links
+* STP would otherwise block links
+* You control both ends of the link
