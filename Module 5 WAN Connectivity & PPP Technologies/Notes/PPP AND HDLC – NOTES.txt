@@ -1,0 +1,162 @@
+PPP AND HDLC 
+========================
+
+1) PPP (Point-to-Point Protocol)
+--------------------------------
+PPP is a Layer 2 protocol used on point-to-point links. It connects
+exactly two devices and is commonly used between a customer router
+and an ISP.
+
+PPP does more than simple framing.
+
+PPP provides:
+- Encapsulation for Layer 3 protocols (IPv4, IPv6, etc.)
+- LCP (Link Control Protocol) to establish, maintain, and terminate the link
+- Authentication (CHAP, PAP)
+- NCP (Network Control Protocols) to negotiate Layer 3 parameters
+
+PPP characteristics:
+- Open standard
+- Vendor independent
+- Supports authentication
+- Supports negotiation
+- Works only on point-to-point links
+
+PPP can run over:
+- Serial links
+- Ethernet (PPPoE)
+- Logical tunnels (legacy use)
+
+PPP is NOT a LAN protocol.
+
+------------------------------------------------------------
+
+2) HDLC (High-Level Data Link Control)
+-------------------------------------
+HDLC is a Layer 2 protocol used on point-to-point links. It is simpler
+than PPP and focuses only on encapsulation.
+
+HDLC provides:
+- Framing
+- Error detection
+
+HDLC does NOT provide:
+- Authentication
+- Link negotiation
+- Dynamic Layer 3 configuration
+
+On Cisco devices, HDLC usually means Cisco HDLC, which is proprietary.
+
+HDLC characteristics:
+- Simple and lightweight
+- Fast with minimal overhead
+- Cisco-to-Cisco only (Cisco HDLC)
+- No authentication
+- No negotiation
+
+------------------------------------------------------------
+
+3) PAP (Password Authentication Protocol)
+-----------------------------------------
+PAP is a PPP authentication method that uses a simple username and
+password exchange.
+
+How PAP works:
+1. PPP link comes up
+2. Client sends username and password in clear text
+3. Server checks credentials
+4. Access is granted or denied
+
+PAP characteristics:
+- Credentials are sent in plain text
+- Authentication happens only once
+- No protection against replay attacks
+- Very weak security
+
+PAP is used only when:
+- Legacy devices are involved
+- CHAP is not supported
+- For labs and demonstrations
+
+------------------------------------------------------------
+
+4) CHAP (Challenge Handshake Authentication Protocol)
+-----------------------------------------------------
+CHAP is a secure PPP authentication method based on challenge-response.
+
+How CHAP works:
+1. PPP link comes up
+2. Server sends a random challenge
+3. Client hashes the challenge with a shared secret
+4. Client sends the hash result
+5. Server performs the same calculation
+6. If hashes match, authentication succeeds
+
+CHAP characteristics:
+- Password is never sent over the link
+- Uses one-way hashing
+- Protects against replay attacks
+- Periodic re-authentication during the session
+- Stronger than PAP
+
+CHAP still requires:
+- A shared secret stored locally
+- Matching usernames (remote hostname on Cisco devices)
+
+------------------------------------------------------------
+
+5) PPP vs HDLC – Key Differences
+--------------------------------
+
+Encapsulation:
+- PPP  : Encapsulation + control protocols
+- HDLC : Encapsulation only
+
+Authentication:
+- PPP  : Yes (PAP, CHAP)
+- HDLC : No
+
+Negotiation:
+- PPP  : Yes (LCP, NCP)
+- HDLC : No
+
+Standards:
+- PPP  : Open standard
+- HDLC : Cisco HDLC is proprietary
+
+Interoperability:
+- PPP  : Multi-vendor support
+- HDLC : Cisco-to-Cisco only
+
+Complexity:
+- PPP  : More overhead, more features
+- HDLC : Minimal overhead, minimal features
+
+------------------------------------------------------------
+
+6) When to Use PPP
+------------------
+- When authentication is required
+- When connecting to an ISP
+- When using multi-vendor devices
+- When realistic WAN behavior is needed
+
+------------------------------------------------------------
+
+7) When to Use HDLC
+-------------------
+- When both devices are Cisco
+- When simplicity is preferred
+- When authentication is not required
+- For quick or basic lab setups
+
+------------------------------------------------------------
+
+SUMMARY
+-------
+HDLC is a simple point-to-point pipe.
+PPP is a managed point-to-point protocol with authentication
+and negotiation.
+
+PAP is insecure and legacy.
+CHAP is the minimum acceptable PPP authentication method.
