@@ -160,7 +160,23 @@ You will be able to:
 
 ---
 
-### MODULE 7 — Network Services & Address Translation  
+### MODULE 7 — Traffic Filtering & Access Control  
+*(ACLs)*
+
+**Focus:** Network traffic control and security
+
+Topics include:
+- Standard vs extended ACLs
+- ACL placement logic
+- Traffic filtering verification
+- Common ACL mistakes
+
+**Outcome:**  
+You can control traffic flow and secure networks using ACLs.
+
+---
+
+### MODULE 8 — Network Services & Address Translation  
 *(DHCP, NAT)*
 
 **Focus:** IP addressing and internet connectivity
@@ -174,22 +190,6 @@ Topics include:
 
 **Outcome:**  
 You can automate IP addressing, configure NAT, and troubleshoot address translation.
-
----
-
-### MODULE 8 — Traffic Filtering & Access Control  
-*(ACLs)*
-
-**Focus:** Network traffic control and security
-
-Topics include:
-- Standard vs extended ACLs
-- ACL placement logic
-- Traffic filtering verification
-- Common ACL mistakes
-
-**Outcome:**  
-You can control traffic flow and secure networks using ACLs.
 
 ---
 
