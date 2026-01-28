@@ -193,7 +193,7 @@ You can automate IP addressing, configure NAT, and troubleshoot address translat
 
 ---
 
-### MODULE 9 — Full Revision & Integrated Troubleshooting
+### MODULE 9 — Full Revision 
 
 **Focus:** End-to-end understanding and exam readiness
 
@@ -201,7 +201,6 @@ This module revises **all Networking 2 topics** through:
 - Concept recap
 - Command review
 - Exam-style scenarios
-- Integrated troubleshooting labs
 
 **Outcome:**  
 You can connect all Networking 2 concepts together and troubleshoot complex networks systematically.
