@@ -1,0 +1,148 @@
+NAT (Network Address Translation)
+--------------------------------------------------
+WHAT NAT DOES
+--------------------------------------------------
+NAT translates private IP addresses into public IP addresses so devices inside a network can communicate with the Internet.
+
+NAT always requires:
+- Inside interface
+- Outside interface
+- Translation rule
+
+--------------------------------------------------
+1. STATIC NAT (ONE-TO-ONE)
+--------------------------------------------------
+Definition:
+A permanent, fixed mapping between one private IP address and one public IP address.
+
+Use case:
+- Public servers (Web, Mail, FTP)
+- Devices that must always be reachable from the Internet
+
+How it works:
+- Mapping is always present
+- No ports are used
+- One inside device uses one public IP
+
+Example:
+Private IP: 192.168.1.10
+Public IP : 209.165.200.10
+
+Configuration example:
+ip nat inside source static 192.168.1.10 209.165.200.10
+
+Key points:
+- 1 inside = 1 public
+- Wastes public IPs
+- Always reachable
+
+--------------------------------------------------
+2. DYNAMIC NAT (POOL-BASED, ONE-TO-ONE)
+--------------------------------------------------
+Definition:
+Temporary one-to-one translation using a pool of public IP addresses.
+
+Use case:
+- Limited number of users
+- Lab or legacy networks
+
+How it works:
+1. Inside host sends traffic
+2. Router checks ACL
+3. Router assigns a free IP from the pool
+4. Mapping stays active while traffic flows
+5. Mapping expires and IP returns to pool
+
+Example pool:
+209.165.200.229
+209.165.200.230
+
+Example translations:
+172.16.10.10 -> 209.165.200.229
+172.16.11.10 -> 209.165.200.230
+
+If a third device tries:
+- No free public IP
+- Traffic fails
+
+Configuration example:
+access-list 1 permit 172.16.0.0 0.0.255.255
+ip nat pool R2_POOL 209.165.200.229 209.165.200.230 netmask 255.255.255.252
+ip nat inside source list 1 pool R2_POOL
+
+Key points:
+- One public IP per inside host
+- No port sharing
+- Pool size limits users
+
+--------------------------------------------------
+3. DYNAMIC PAT (POOL + PORTS)
+--------------------------------------------------
+Definition:
+Many inside hosts share multiple public IPs using port numbers.
+
+Use case:
+- Medium-sized networks
+- Better scalability than Dynamic NAT
+
+How it works:
+- Router selects an IP from the pool
+- Router assigns unique source ports
+- Multiple hosts can use the same public IP
+
+Example:
+172.16.10.10:49152 -> 209.165.200.229:30001
+172.16.11.10:49153 -> 209.165.200.229:30002
+
+Configuration example:
+access-list 1 permit 172.16.0.0 0.0.255.255
+ip nat pool R2_POOL 209.165.200.229 209.165.200.230 netmask 255.255.255.252
+ip nat inside source list 1 pool R2_POOL overload
+
+Key points:
+- Many inside hosts
+- Few public IPs
+- Uses ports
+- More scalable than Dynamic NAT
+
+--------------------------------------------------
+4. PAT (INTERFACE OVERLOAD)
+--------------------------------------------------
+Definition:
+Many inside hosts share ONE public IP using port numbers.
+
+Use case:
+- Home networks
+- Enterprise networks
+- Most real-world NAT deployments
+
+How it works:
+- Public IP = outside interface IP
+- Each connection gets a unique port
+- Thousands of sessions supported
+
+Example:
+Public IP: 209.165.200.226
+
+Translations:
+172.16.10.10 -> 209.165.200.226:30001
+172.16.11.10 -> 209.165.200.226:30002
+172.16.12.10 -> 209.165.200.226:30003
+
+Configuration example:
+access-list 2 permit 172.16.0.0 0.0.255.255
+ip nat inside source list 2 interface s0/1/1 overload
+
+Key points:
+- Many inside = one public
+- Uses ports
+- Highly scalable
+- Most common NAT type
+
+--------------------------------------------------
+QUICK MEMORY RULES
+--------------------------------------------------
+Static NAT    -> Servers
+Dynamic NAT  -> Limited users, no ports
+Dynamic PAT  -> Pool + ports
+PAT          -> One IP for everyone
